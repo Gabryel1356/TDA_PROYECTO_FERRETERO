@@ -1,43 +1,50 @@
 package TDA.MSproducto.services;
 
 import java.util.List;
-import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import TDA.MSproducto.model.modeloProducto;
 import TDA.MSproducto.repository.IProductoRepository;
 
+import TDA.MSproducto.services.ProductoService;
+import jakarta.transaction.Transactional;
+
 @Service
-public class ProductoService {
+public class ProductoService implements IProductoService {
+
+    Logger logger = LoggerFactory.getLogger(ProductoService.class);
 
     @Autowired
-    IProductoRepository ProductoRepository;
+    IProductoRepository iProductoRepository;
 
-    public List<modeloProducto> getProducto() {
-        return (List<modeloProducto>) ProductoRepository.findAll();
+    @Override
+    @Transactional
+    public List<modeloProducto> obtener() {
+        return (List<modeloProducto>) iProductoRepository.findAll();
     }
 
-    public modeloProducto PostProducto(modeloProducto producto) {
-        return ProductoRepository.save(producto);
+    @Override
+    @Transactional
+    public modeloProducto agregar(modeloProducto mProducto) {
+        return iProductoRepository.save(mProducto);
     }
 
-    public Optional<modeloProducto> getProductoPorId(int id) {
-        return ProductoRepository.findById(id);
+    @Override
+    @Cacheable(cacheNames = { "producto" }, key = "#idProducto")
+    public List<modeloProducto> obtenerProductoPorid(int idProducto) {
+        logger.info("SERVICES: Get Find By idProducto: {}", idProducto);
+        return (List<modeloProducto>) iProductoRepository.findAll();
     }
 
-    public void updateEmployee(int id, modeloProducto producto) {
-        ProductoRepository.save(producto);
-    }
-
-    public boolean DeleteProducto(modeloProducto id) {
-        try {
-            ProductoRepository.delete(id);
-            return true;
-        } catch (Exception err) {
-            return false;
-        }
+    @Override
+    @Transactional
+    public modeloProducto ModificarProducto( modeloProducto producto) {
+       return iProductoRepository.save(producto);
     }
 
 }
