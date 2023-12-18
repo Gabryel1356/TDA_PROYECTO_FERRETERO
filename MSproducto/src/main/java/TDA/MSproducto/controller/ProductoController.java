@@ -2,44 +2,45 @@ package TDA.MSproducto.controller;
 
 import java.util.List;
 
-import org.apache.kafka.common.requests.ProduceRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import TDA.MSproducto.model.modeloProducto;
 import TDA.MSproducto.services.IProductoService;
-import TDA.MSproducto.services.ProductoService;
+
 import TDA.MSproducto.dto.ProductoRequest;
 import TDA.MSproducto.mensaje.ProductoConsumerListener;;
 
 @RestController
-@RequestMapping("/api/prodcuto")
+@RequestMapping("/api/producto")
 public class ProductoController {
+
     @Autowired
-    IProductoService iProductoService;
-    Logger logger = LoggerFactory.getLogger(ProductoService.class);
+    IProductoService productoService;
+
+
+
+    Logger logger = LoggerFactory.getLogger(ProductoController.class);
 
     @Autowired
     ProductoConsumerListener messageEvent;
 
-    @GetMapping("listar")
-    public List<modeloProducto> listar() {
-        logger.info("CONTROLLER: modeloProducto");
-        return (List<modeloProducto>) iProductoService.obtener();
+    @GetMapping()
+    public List<modeloProducto> get() {
+        //logger.info("CONTROLLER: modeloProducto");
+        return  productoService.obtener();
     }
 
-    @PostMapping("/registrar")
+    @PostMapping()
     public ResponseEntity<?> registrar(@RequestBody ProductoRequest request) throws Exception {
         logger.info(
                 "Post: idProducto {} - nombre {} - descripcion {} - fechaFabricacion {} - costoCompra {} - stock {} - imagenRuta {} - nombreUnidad {}",
@@ -50,7 +51,7 @@ public class ProductoController {
         ModeloProducto.setIdProducto(request.getIdProducto());
         ModeloProducto.setNombre(request.getNombre());
 
-        ModeloProducto = iProductoService.agregar(ModeloProducto);
+        ModeloProducto = productoService.agregar(ModeloProducto);
         logger.info("modeloProducto {}", ModeloProducto);
         messageEvent.sendDepositEvent(ModeloProducto);
         return ResponseEntity.status(HttpStatus.CREATED).body(ModeloProducto);
@@ -60,11 +61,8 @@ public class ProductoController {
     public ResponseEntity<?> obtenerUsuarioPorId(@RequestBody int idProducto) {
 
         logger.info("CONTROLLER: Get By idProducto: {}", idProducto);
-        Iterable<modeloProducto> Producto = iProductoService.obtenerProductoPorid(idProducto);
+        Iterable<modeloProducto> Producto = productoService.obtenerProductoPorid(idProducto);
         return ResponseEntity.ok(Producto);
     }
-
-   
-   
 
 }

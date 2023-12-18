@@ -20,31 +20,32 @@ public class ProductoService implements IProductoService {
     Logger logger = LoggerFactory.getLogger(ProductoService.class);
 
     @Autowired
-    IProductoRepository iProductoRepository;
+    IProductoRepository productoRepository;
 
     @Override
     @Transactional
     public List<modeloProducto> obtener() {
-        return (List<modeloProducto>) iProductoRepository.findAll();
+        return (List<modeloProducto>) productoRepository.findAll();
     }
+
 
     @Override
     @Transactional
     public modeloProducto agregar(modeloProducto mProducto) {
-        return iProductoRepository.save(mProducto);
+        return productoRepository.save(mProducto);
     }
 
     @Override
     @Cacheable(cacheNames = { "producto" }, key = "#idProducto")
     public List<modeloProducto> obtenerProductoPorid(int idProducto) {
-        logger.info("SERVICES: Get Find By idProducto: {}", idProducto);
-        return (List<modeloProducto>) iProductoRepository.findAll();
+       logger.info("SERVICES: Get Find By idProducto: {}", idProducto);
+        return (List<modeloProducto>) productoRepository.findAll();
     }
 
     @Override
     @Transactional
     public modeloProducto ModificarProducto( modeloProducto producto) {
-       return iProductoRepository.save(producto);
+       return productoRepository.save(producto);
     }
 
 }

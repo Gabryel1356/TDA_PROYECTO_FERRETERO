@@ -1,8 +1,11 @@
 
 package TDA.MSproducto.dto;
 
-public class ProductoRequest {
+import java.io.Serializable;
 
+public class ProductoRequest implements Serializable {
+
+    private static final long serialVersionUID = 1L;
     private int idProducto;
     private String nombre;
     private String descripcion;
@@ -11,6 +14,23 @@ public class ProductoRequest {
     private Double stock;
     private String imagenRuta;
     private String nombreUnidad;
+
+    
+
+    public ProductoRequest() {
+    }
+
+    public ProductoRequest(int idProducto, String nombre, String descripcion, String fechaFabricacion,
+            Double costoCompra, Double stock, String imagenRuta, String nombreUnidad) {
+        this.setIdProducto(idProducto); 
+        this.setNombre(nombreUnidad);
+        this.setDescripcion(descripcion);
+        this.setFechaFabricacion(fechaFabricacion);
+        this.setCostoCompra(costoCompra);
+        this.setStock(stock);
+        this.setImagenRuta(imagenRuta);
+        this.setNombreUnidad(nombreUnidad);
+    }
 
     public int getIdProducto() {
         return idProducto;
