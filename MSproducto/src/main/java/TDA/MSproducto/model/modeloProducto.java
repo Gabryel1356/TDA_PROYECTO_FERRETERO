@@ -10,7 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "producto")
+@Table(name = "product")
 public class modeloProducto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,48 +18,46 @@ public class modeloProducto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "idProducto")
-    private int idProducto;
+    @Column(name = "idproduct")
+    private int idproduct;
 
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "nombrepro")
+    private String nombrepro;
 
     @Column(name = "descripcion")
     private String descripcion;
 
-    @Column(name = "fechaFabricacion")
-    private String fechaFabricacion;
+    @Column(name = "fechafa")
+    private String fechafa;
 
-    @Column(name = "costoCompra")
-    private double costoCompra;
+    @Column(name = "costocompra")
+    private double costocompra;
 
     @Column(name = "stock")
     private double stock;
 
-    @Column(name = "imagenRuta")
-    private double imagenRuta;
+    @Column(name = "imagenruta")
+    private double imagenruta;
 
-    @Column(name = "nombreUnidad")
-    private String nombreUnidad;
+    @Column(name = "nombreunidad")
+    private String nombreunidad;
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
+  
+
+    public int getIdproduct() {
+        return idproduct;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public void setIdproduct(int idproduct) {
+        this.idproduct = idproduct;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public String getNombrepro() {
+        return nombrepro;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombrepro(String nombrepro) {
+        this.nombrepro = nombrepro;
     }
 
     public String getDescripcion() {
@@ -70,20 +68,20 @@ public class modeloProducto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getFechaFabricacion() {
-        return fechaFabricacion;
+    public String getFechafa() {
+        return fechafa;
     }
 
-    public void setFechaFabricacion(String fechaFabricacion) {
-        this.fechaFabricacion = fechaFabricacion;
+    public void setFechafa(String fechafa) {
+        this.fechafa = fechafa;
     }
 
-    public double getCostoCompra() {
-        return costoCompra;
+    public double getCostocompra() {
+        return costocompra;
     }
 
-    public void setCostoCompra(double costoCompra) {
-        this.costoCompra = costoCompra;
+    public void setCostocompra(double costocompra) {
+        this.costocompra = costocompra;
     }
 
     public double getStock() {
@@ -94,21 +92,20 @@ public class modeloProducto implements Serializable {
         this.stock = stock;
     }
 
-    public double getImagenRuta() {
-        return imagenRuta;
+    public double getImagenruta() {
+        return imagenruta;
     }
 
-    public void setImagenRuta(double imagenRuta) {
-        this.imagenRuta = imagenRuta;
+    public void setImagenruta(double imagenruta) {
+        this.imagenruta = imagenruta;
     }
 
-    public String getNombreUnidad() {
-        return nombreUnidad;
+    public String getNombreunidad() {
+        return nombreunidad;
     }
 
-    public void setNombreUnidad(String nombreUnidad) {
-        this.nombreUnidad = nombreUnidad;
+    public void setNombreunidad(String nombreunidad) {
+        this.nombreunidad = nombreunidad;
     }
-
 
 }

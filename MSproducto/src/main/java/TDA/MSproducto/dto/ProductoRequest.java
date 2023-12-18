@@ -6,46 +6,52 @@ import java.io.Serializable;
 public class ProductoRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private int idProducto;
-    private String nombre;
-    private String descripcion;
-    private String fechaFabricacion;
-    private Double costoCompra;
-    private Double stock;
-    private String imagenRuta;
-    private String nombreUnidad;
 
+
+
+    private Integer idproduct;
+    private String nombrepro;
+    private String descripcion;
+    private String fechafa;
+    private Double costocompra;
+    private Double stock;
+    private String imagenruta;
+    private String nombreunidad;
     
 
     public ProductoRequest() {
     }
 
-    public ProductoRequest(int idProducto, String nombre, String descripcion, String fechaFabricacion,
-            Double costoCompra, Double stock, String imagenRuta, String nombreUnidad) {
-        this.setIdProducto(idProducto); 
-        this.setNombre(nombreUnidad);
+    public ProductoRequest(int idproduct, String nombrepro, String descripcion, String fechafa,
+            Double costocompra, Double stock, String imagenruta, String nombreunidad) {
+        this.setIdproduct(idproduct);
+        this.setNombrepro(nombrepro);
         this.setDescripcion(descripcion);
-        this.setFechaFabricacion(fechaFabricacion);
-        this.setCostoCompra(costoCompra);
+        this.setFechafa(fechafa);
+        this.setCostocompra(costocompra);
         this.setStock(stock);
-        this.setImagenRuta(imagenRuta);
-        this.setNombreUnidad(nombreUnidad);
+        this.setImagenruta(imagenruta);
+        this.setNombreunidad(nombreunidad);
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public static long getSerialversionuid() {
+        return serialVersionUID;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
+    public Integer getIdproduct() {
+        return idproduct;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setIdproduct(Integer idproduct) {
+        this.idproduct = idproduct;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public String getNombrepro() {
+        return nombrepro;
+    }
+
+    public void setNombrepro(String nombrepro) {
+        this.nombrepro = nombrepro;
     }
 
     public String getDescripcion() {
@@ -56,20 +62,20 @@ public class ProductoRequest implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public String getFechaFabricacion() {
-        return fechaFabricacion;
+    public String getFechafa() {
+        return fechafa;
     }
 
-    public void setFechaFabricacion(String fechaFabricacion) {
-        this.fechaFabricacion = fechaFabricacion;
+    public void setFechafa(String fechafa) {
+        this.fechafa = fechafa;
     }
 
-    public Double getCostoCompra() {
-        return costoCompra;
+    public Double getCostocompra() {
+        return costocompra;
     }
 
-    public void setCostoCompra(Double costoCompra) {
-        this.costoCompra = costoCompra;
+    public void setCostocompra(Double costocompra) {
+        this.costocompra = costocompra;
     }
 
     public Double getStock() {
@@ -80,20 +86,21 @@ public class ProductoRequest implements Serializable {
         this.stock = stock;
     }
 
-    public String getImagenRuta() {
-        return imagenRuta;
+    public String getImagenruta() {
+        return imagenruta;
     }
 
-    public void setImagenRuta(String imagenRuta) {
-        this.imagenRuta = imagenRuta;
+    public void setImagenruta(String imagenruta) {
+        this.imagenruta = imagenruta;
     }
 
-    public String getNombreUnidad() {
-        return nombreUnidad;
+    public String getNombreunidad() {
+        return nombreunidad;
     }
 
-    public void setNombreUnidad(String nombreUnidad) {
-        this.nombreUnidad = nombreUnidad;
+    public void setNombreunidad(String nombreunidad) {
+        this.nombreunidad = nombreunidad;
     }
 
+  
 }

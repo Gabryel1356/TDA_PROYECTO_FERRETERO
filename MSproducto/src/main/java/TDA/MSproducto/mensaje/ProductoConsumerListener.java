@@ -53,11 +53,11 @@ public class ProductoConsumerListener {
 
         modeloProducto model = new modeloProducto();
 
-        model.setIdProducto(data.getIdProducto());
-        model.setCostoCompra(data.getCostoCompra());
+        model.setIdproduct(data.getIdproduct());
+        model.setCostocompra(data.getCostocompra());
         model.setStock(data.getStock());
 
-        log.info("Register Transaction {} ", data.getIdProducto());
+        log.info("Register Transaction {} ", data.getIdproduct());
         service.agregar(model);
 
         log.info("****************************************************************");

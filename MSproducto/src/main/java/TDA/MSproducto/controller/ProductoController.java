@@ -27,8 +27,6 @@ public class ProductoController {
     @Autowired
     IProductoService productoService;
 
-
-
     Logger logger = LoggerFactory.getLogger(ProductoController.class);
 
     @Autowired
@@ -36,20 +34,20 @@ public class ProductoController {
 
     @GetMapping()
     public List<modeloProducto> get() {
-        //logger.info("CONTROLLER: modeloProducto");
-        return  productoService.obtener();
+        logger.info("CONTROLLER: modeloProducto");
+        return productoService.obtener();
     }
 
     @PostMapping()
     public ResponseEntity<?> registrar(@RequestBody ProductoRequest request) throws Exception {
         logger.info(
                 "Post: idProducto {} - nombre {} - descripcion {} - fechaFabricacion {} - costoCompra {} - stock {} - imagenRuta {} - nombreUnidad {}",
-                request.getIdProducto(), request.getNombre(), request.getImagenRuta(), request.getNombreUnidad(),
-                request.getStock(), request.getFechaFabricacion(), request.getCostoCompra(), request.getDescripcion());
+                request.getIdproduct(), request.getNombrepro(), request.getImagenruta(), request.getNombreunidad(),
+                request.getStock(), request.getFechafa(), request.getCostocompra(), request.getDescripcion());
 
         modeloProducto ModeloProducto = new modeloProducto();
-        ModeloProducto.setIdProducto(request.getIdProducto());
-        ModeloProducto.setNombre(request.getNombre());
+        ModeloProducto.setIdproduct(request.getIdproduct());
+        ModeloProducto.setNombrepro(request.getNombrepro());
 
         ModeloProducto = productoService.agregar(ModeloProducto);
         logger.info("modeloProducto {}", ModeloProducto);
