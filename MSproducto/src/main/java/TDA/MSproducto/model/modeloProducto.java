@@ -37,7 +37,7 @@ public class modeloProducto implements Serializable {
     private double stock;
 
     @Column(name = "imagenruta")
-    private double imagenruta;
+    private String imagenruta;
 
     @Column(name = "nombreunidad")
     private String nombreunidad;
@@ -92,11 +92,11 @@ public class modeloProducto implements Serializable {
         this.stock = stock;
     }
 
-    public double getImagenruta() {
+    public String getImagenruta() {
         return imagenruta;
     }
 
-    public void setImagenruta(double imagenruta) {
+    public void setImagenruta(String imagenruta) {
         this.imagenruta = imagenruta;
     }
 

@@ -7,8 +7,6 @@ public class ProductoRequest implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-
-
     private Integer idproduct;
     private String nombrepro;
     private String descripcion;
@@ -22,9 +20,9 @@ public class ProductoRequest implements Serializable {
     public ProductoRequest() {
     }
 
-    public ProductoRequest(int idproduct, String nombrepro, String descripcion, String fechafa,
+    public ProductoRequest(int id, String nombrepro, String descripcion, String fechafa,
             Double costocompra, Double stock, String imagenruta, String nombreunidad) {
-        this.setIdproduct(idproduct);
+        this.setIdproduct(id);
         this.setNombrepro(nombrepro);
         this.setDescripcion(descripcion);
         this.setFechafa(fechafa);
@@ -34,9 +32,6 @@ public class ProductoRequest implements Serializable {
         this.setNombreunidad(nombreunidad);
     }
 
-    public static long getSerialversionuid() {
-        return serialVersionUID;
-    }
 
     public Integer getIdproduct() {
         return idproduct;

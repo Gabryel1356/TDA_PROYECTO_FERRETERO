@@ -1,11 +1,12 @@
 package TDA.MSproducto.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
+
 import org.springframework.stereotype.Service;
 
 import TDA.MSproducto.model.modeloProducto;
@@ -28,24 +29,29 @@ public class ProductoService implements IProductoService {
         return (List<modeloProducto>) productoRepository.findAll();
     }
 
-
     @Override
     @Transactional
-    public modeloProducto agregar(modeloProducto mProducto) {
-        return productoRepository.save(mProducto);
-    }
-
-    @Override
-    @Cacheable(cacheNames = { "producto" }, key = "#idProducto")
-    public List<modeloProducto> obtenerProductoPorid(int idProducto) {
-       logger.info("SERVICES: Get Find By idProducto: {}", idProducto);
-        return (List<modeloProducto>) productoRepository.findAll();
+    public modeloProducto agregar(modeloProducto producto) {
+        return productoRepository.save(producto);
     }
 
     @Override
     @Transactional
-    public modeloProducto ModificarProducto( modeloProducto producto) {
-       return productoRepository.save(producto);
+    public Optional<modeloProducto> obtenerProductoPorid(int id) {
+        return productoRepository.findById(id);
+    }
+
+    @Override
+    @Transactional
+    public modeloProducto ModificarProducto(int idproducto, modeloProducto producto) {
+        return productoRepository.save(producto);
+    }
+
+    @Override
+    @Transactional
+    public void DeleteProducto( int idproduct) {
+       
+        productoRepository.deleteById(idproduct);
     }
 
 }
