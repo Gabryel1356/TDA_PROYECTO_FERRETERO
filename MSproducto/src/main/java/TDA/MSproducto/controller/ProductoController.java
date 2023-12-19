@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,59 +39,107 @@ public class ProductoController {
 
     @GetMapping("/listar")
     public ResponseEntity<?> Listar() {
-        List<modeloProducto> ListarProducto = productoService.obtener();
-        return ResponseEntity.ok(ListarProducto);
+
+        try {
+            List<modeloProducto> ListarProducto = productoService.obtener();
+            logger.debug("CONTROLLER: ListarProducto");
+
+            return ResponseEntity.ok(ListarProducto);
+
+        } catch (Exception e) {
+            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+        }
+
     }
 
     @PostMapping("/registrar")
     public ResponseEntity<?> registrar(@RequestBody ProductoRequest request) {
 
-        modeloProducto Mp = new modeloProducto();
-        Mp.setIdproduct(request.getIdproduct());
-        Mp.setNombrepro(request.getNombrepro());
-        Mp.setDescripcion(request.getDescripcion());
-        Mp.setFechafa(request.getFechafa());
-        Mp.setCostocompra(request.getCostocompra());
-        Mp.setStock(request.getStock());
-        Mp.setImagenruta(request.getImagenruta());
-        Mp.setNombreunidad(request.getNombreunidad());
+        try {
+            logger.info(
+                    "Post: idProducto {} - nombre {} - descripcion {} - fechaFabricacion {} - costoCompra {} - stock {} - imagenRuta {} - nombreUnidad {}",
+                    request.getIdproduct(), request.getNombrepro(), request.getImagenruta(), request.getNombreunidad(),
+                    request.getStock(), request.getFechafa(), request.getCostocompra(), request.getDescripcion());
+            modeloProducto Mp = new modeloProducto();
+            Mp.setIdproduct(request.getIdproduct());
+            Mp.setNombrepro(request.getNombrepro());
+            Mp.setDescripcion(request.getDescripcion());
+            Mp.setFechafa(request.getFechafa());
+            Mp.setCostocompra(request.getCostocompra());
+            Mp.setStock(request.getStock());
+            Mp.setImagenruta(request.getImagenruta());
+            Mp.setNombreunidad(request.getNombreunidad());
 
-        Mp = productoService.agregar(Mp);
+            Mp = productoService.agregar(Mp);
+            logger.info("Agregar modeloProducto {}", Mp);
+            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
+        } catch (Exception e) {
+            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+        }
 
-        return ResponseEntity.status(HttpStatus.CREATED).body(Mp);
     }
 
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> obtenerProducto(@PathVariable("id") int idproduct) throws Exception {
-        Optional<modeloProducto> MProducto = productoService.obtenerProductoPorid(idproduct);
-        return ResponseEntity.ok().body(MProducto);
+        try {
+            logger.info("CONTROLLER: Obtener por idproducto: {}", idproduct);
+            Optional<modeloProducto> MProducto = productoService.obtenerProductoPorid(idproduct);
+            
+            return ResponseEntity.ok( MProducto);
+        } catch (Exception e) {
+            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+        }
+
     }
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> modificarProducto(@PathVariable int id, @RequestBody ProductoRequest request) {
 
-        modeloProducto Mp = new modeloProducto();
+        try {
+            logger.info(
+                    "Post: idProducto {} - nombre {} - descripcion {} - fechaFabricacion {} - costoCompra {} - stock {} - imagenRuta {} - nombreUnidad {}",
+                    request.getIdproduct(), request.getNombrepro(), request.getImagenruta(), request.getNombreunidad(),
+                    request.getStock(), request.getFechafa(), request.getCostocompra(), request.getDescripcion());
 
-        Mp.setIdproduct(request.getIdproduct());
-        Mp.setNombrepro(request.getNombrepro());
-        Mp.setDescripcion(request.getDescripcion());
-        Mp.setFechafa(request.getFechafa());
-        Mp.setCostocompra(request.getCostocompra());
-        Mp.setStock(request.getStock());
-        Mp.setImagenruta(request.getImagenruta());
-        Mp.setNombreunidad(request.getNombreunidad());
+            modeloProducto Mp = new modeloProducto();
 
-        Mp = productoService.ModificarProducto(id, Mp);
+            Mp.setIdproduct(request.getIdproduct());
+            Mp.setNombrepro(request.getNombrepro());
+            Mp.setDescripcion(request.getDescripcion());
+            Mp.setFechafa(request.getFechafa());
+            Mp.setCostocompra(request.getCostocompra());
+            Mp.setStock(request.getStock());
+            Mp.setImagenruta(request.getImagenruta());
+            Mp.setNombreunidad(request.getNombreunidad());
 
-        return ResponseEntity.ok(Mp);
+            Mp = productoService.ModificarProducto(id, Mp);
+            logger.info("Modificacion del modeloProducto {}", Mp);
+            return ResponseEntity.ok(messageEvent.MSGMODIEXITO());
+        } catch (Exception e) {
+            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+        }
+
     }
 
     @DeleteMapping(path = "/{id}")
-    public ResponseEntity<String> DeleteProductoPorid(@PathVariable("id") int id) throws Exception {
+    public ResponseEntity<String> DeleteProductoPorid(@PathVariable("id") int id) {
 
-        productoService.DeleteProducto(id);
+        try {
 
-        return ResponseEntity.ok("SE ELIMINO TODO");
+            productoService.DeleteProducto(id);
+            logger.info("CONTROLLER: Se elimino con el idproducto: {}", id);
+            return ResponseEntity.ok(messageEvent.MSGELIMEXIT());
+
+        } catch (Exception e) {
+
+            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+        }
+
     }
 
 }
