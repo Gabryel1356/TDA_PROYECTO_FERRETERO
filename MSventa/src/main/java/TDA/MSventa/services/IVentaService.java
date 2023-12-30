@@ -6,6 +6,7 @@ import java.util.Optional;
 import TDA.MSventa.model.modeloVenta;
 
 public interface IVentaService {
+    
 public List<modeloVenta> obtener();
 
     public modeloVenta agregar(modeloVenta venta);

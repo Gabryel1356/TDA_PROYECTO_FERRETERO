@@ -8,11 +8,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.stereotype.Service;
 
 import TDA.MSventa.model.modeloVenta;
 import TDA.MSventa.repository.IventaRepository;
 import jakarta.transaction.Transactional;
 
+
+@Service
 public class VentaService implements IVentaService {
 
 Logger logger = LoggerFactory.getLogger(VentaService.class);

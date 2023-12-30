@@ -1,12 +1,10 @@
 package TDA.MSventa.controller;
-
 import java.util.List;
 import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -24,15 +22,13 @@ import TDA.MSventa.mensaje.Mensajeria;
 import TDA.MSventa.model.modeloVenta;
 import TDA.MSventa.services.IVentaService;
 
-
 @RestController
-@RequestMapping("/api/producto")
-public class Ventacontroller {
-
+@RequestMapping("/api/venta")
+public class VentaController {
     @Autowired
-    IVentaService VentaService;
+    IVentaService ventaServ;
 
-    Logger logger = LoggerFactory.getLogger(Ventacontroller.class);
+    Logger logger = LoggerFactory.getLogger(VentaController.class);
 
     @Autowired
     Mensajeria messageEvent;
@@ -41,7 +37,7 @@ public class Ventacontroller {
     public ResponseEntity<?> Listar() {
 
         try {
-            List<modeloVenta> Listarventa = VentaService.obtener();
+            List<modeloVenta> Listarventa = ventaServ.obtener();
             logger.debug("CONTROLLER: ListarVenta");
 
             return ResponseEntity.ok(Listarventa);
@@ -70,7 +66,7 @@ public class Ventacontroller {
             Mv.setTipocomprobante(request.getTipocomprobante());
            
 
-            Mv = VentaService.agregar(Mv);
+            Mv = ventaServ.agregar(Mv);
             logger.info("Agregar modeloVenta {}", Mv);
             return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
         } catch (Exception e) {
@@ -84,7 +80,7 @@ public class Ventacontroller {
     public ResponseEntity<?> obtenerVenta(@PathVariable("id") int idventa) throws Exception {
         try {
             logger.info("CONTROLLER: Obtener por idventa: {}", idventa);
-            Optional<modeloVenta> MVenta = VentaService.obtenerVentaPorid(idventa);
+            Optional<modeloVenta> MVenta = ventaServ.obtenerVentaPorid(idventa);
             
             return ResponseEntity.ok( MVenta);
         } catch (Exception e) {
@@ -111,7 +107,7 @@ public class Ventacontroller {
             Mv.setCostoventa(request.getCostoventa());
             Mv.setTipocomprobante(request.getTipocomprobante());
 
-            Mv = VentaService.agregar(Mv);
+            Mv = ventaServ.agregar(Mv);
             logger.info("Agregar modeloVenta {}", Mv);
             return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
         } catch (Exception e) {
@@ -126,7 +122,7 @@ public class Ventacontroller {
 
         try {
 
-            VentaService.DeleteVenta(id);
+            ventaServ.DeleteVenta(id);
             logger.info("CONTROLLER: Se elimino con el idventa: {}", id);
             return ResponseEntity.ok(messageEvent.MSGELIMEXIT());
 
@@ -137,5 +133,4 @@ public class Ventacontroller {
         }
 
     }
-
 }
