@@ -19,7 +19,6 @@ public class VentaRequest implements Serializable {
     public VentaRequest() {
     }
 
-
     public VentaRequest(int idventa, String fechaventa, double igv, double subtotal, double costoventa,String tipocomprobante) {
         this.setIdventa(idventa);
         this.setFechaventa(fechaventa);
