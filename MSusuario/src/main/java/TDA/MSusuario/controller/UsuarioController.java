@@ -32,10 +32,10 @@ public class UsuarioController {
 
     @PostMapping()
     public ResponseEntity<?> post(@RequestBody UsuarioRequest request) throws Exception {
-        logger.info("Post: Username {} - Password {}", request.getNombreusuario(), request.getClave());
+        logger.info("Post: nombreusuario {} - clave {}", request.getNombreusuario(), request.getClave());
 
         if (!usuarioService.validatedCredentials(request.getNombreusuario(), request.getClave())) {
-            return new ResponseEntity<String>("INVALID_CREDENTIALS", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<String>("CREDENCIALES NO VÁLIDAS", HttpStatus.UNAUTHORIZED);
         }
 
         UsuarioResponse response = new UsuarioResponse(request.getNombreusuario());
