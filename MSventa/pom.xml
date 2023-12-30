@@ -47,12 +47,6 @@
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
-		<!-- MSSQL -->
-<dependency>
-	<groupId>com.microsoft.sqlserver</groupId>
-	<artifactId>mssql-jdbc</artifactId>
-	<scope>runtime</scope>
-</dependency>
 	
 
 	</dependencies>
