@@ -1,19 +1,14 @@
-package TDA.MSgenEnumerador.model;
+package TDA.MSgenEnumerador.dto;
 
-import java.io.Serializable;
-
-import org.bson.codecs.pojo.annotations.BsonId;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document(collection = "genenum")
-public class modeloGenEnumerador implements Serializable {
-
-    @BsonId
-    private String id;
+public class genEnumeradorRequest {
+    
     private int idgenenum;
     private int tipopersona;
     private int tipodocumento;
     private int sexo;
+    
+
+
 
     public int getIdgenenum() {
         return idgenenum;
@@ -46,5 +41,7 @@ public class modeloGenEnumerador implements Serializable {
     public void setSexo(int sexo) {
         this.sexo = sexo;
     }
+
+
 
 }
