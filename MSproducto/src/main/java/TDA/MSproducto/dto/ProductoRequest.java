@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 public class ProductoRequest implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+ 
 
     private Integer idproduct;
     private String nombrepro;
@@ -15,7 +15,16 @@ public class ProductoRequest implements Serializable {
     private Double stock;
     private String imagenruta;
     private String nombreunidad;
+    private int idventa;
     
+
+    public int getIdventa() {
+        return idventa;
+    }
+
+    public void setIdventa(int id) {
+        this.idventa = id;
+    }
 
     public ProductoRequest() {
     }

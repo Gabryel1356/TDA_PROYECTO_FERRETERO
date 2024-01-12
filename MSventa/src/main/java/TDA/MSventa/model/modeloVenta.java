@@ -9,7 +9,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
 @Table(name = "venta")
 public class modeloVenta implements Serializable {
@@ -30,6 +29,9 @@ public class modeloVenta implements Serializable {
 
     @Column(name = "costoventa")
     private double costoventa;
+
+    @Column(name = "unidades")
+    private int unidades;
 
     @Column(name = "tipocomprobante")
     private String tipocomprobante;
@@ -82,6 +84,12 @@ public class modeloVenta implements Serializable {
         this.tipocomprobante = tipocomprobante;
     }
 
-    
+    public int getUnidades() {
+        return unidades;
+    }
+
+    public void setUnidades(int unidades) {
+        this.unidades = unidades;
+    }
 
 }

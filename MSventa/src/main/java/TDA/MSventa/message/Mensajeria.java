@@ -1,4 +1,4 @@
-package TDA.MSproducto.mensaje;
+package TDA.MSventa.message;
 
 import org.springframework.stereotype.Component;
 

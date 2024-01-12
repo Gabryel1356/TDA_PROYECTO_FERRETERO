@@ -18,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import TDA.MSventa.dto.VentaRequest;
-import TDA.MSventa.mensaje.Mensajeria;
+import TDA.MSventa.message.Mensajeria;
 import TDA.MSventa.model.modeloVenta;
 import TDA.MSventa.services.IVentaService;
 
 @RestController
 @RequestMapping("/api/venta")
-public class VentaController {
+public class VentaControler {
     @Autowired
     IVentaService ventaServ;
 
-    Logger logger = LoggerFactory.getLogger(VentaController.class);
+    Logger logger = LoggerFactory.getLogger(VentaControler.class);
 
     @Autowired
     Mensajeria messageEvent;

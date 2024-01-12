@@ -23,7 +23,7 @@ import TDA.MSproducto.model.modeloProducto;
 import TDA.MSproducto.services.IProductoService;
 
 import TDA.MSproducto.dto.ProductoRequest;
-import TDA.MSproducto.mensaje.Mensajeria;
+import TDA.MSproducto.message.Mensajeria;
 
 @RestController
 @RequestMapping("/api/producto")

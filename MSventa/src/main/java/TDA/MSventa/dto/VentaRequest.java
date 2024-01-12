@@ -9,6 +9,8 @@ public class VentaRequest implements Serializable {
 
 
     private int idventa;
+    private int idproduct;
+    private int unidades; 
     private String fechaventa;
     private double igv;
     private double subtotal;
@@ -86,6 +88,22 @@ public class VentaRequest implements Serializable {
 
     public void setTipocomprobante(String tipocomprobante) {
         this.tipocomprobante = tipocomprobante;
+    }
+
+    public int getIdproduct() {
+        return idproduct;
+    }
+
+    public void setIdproduct(int idproducto) {
+        this.idproduct = idproducto;
+    }
+
+    public int getUnidades() {
+        return unidades;
+    }
+
+    public void setUnidades(int unidades) {
+        this.unidades = unidades;
     }
 
 
