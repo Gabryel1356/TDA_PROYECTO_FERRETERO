@@ -33,8 +33,7 @@ public class modeloVenta implements Serializable {
     @Column(name = "unidades")
     private int unidades;
 
-    @Column(name = "tipocomprobante")
-    private String tipocomprobante;
+  
 
     public int getIdventa() {
         return idventa;
@@ -76,13 +75,6 @@ public class modeloVenta implements Serializable {
         this.costoventa = costoventa;
     }
 
-    public String getTipocomprobante() {
-        return tipocomprobante;
-    }
-
-    public void setTipocomprobante(String tipocomprobante) {
-        this.tipocomprobante = tipocomprobante;
-    }
 
     public int getUnidades() {
         return unidades;

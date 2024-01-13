@@ -15,19 +15,19 @@ public class VentaRequest implements Serializable {
     private double igv;
     private double subtotal;
     private double costoventa;
-    private String tipocomprobante;
+    
     
 
     public VentaRequest() {
     }
 
-    public VentaRequest(int idventa, String fechaventa, double igv, double subtotal, double costoventa,String tipocomprobante) {
+    public VentaRequest(int idventa, String fechaventa, double igv, double subtotal, double costoventa,int unidades) {
         this.setIdventa(idventa);
         this.setFechaventa(fechaventa);
         this.setIgv(igv);
         this.setSubtotal(subtotal);
         this.setCostoventa(costoventa);
-        this.setTipocomprobante(tipocomprobante);
+        this.setUnidades(unidades);
     }
 
 
@@ -81,14 +81,6 @@ public class VentaRequest implements Serializable {
     }
 
 
-    public String getTipocomprobante() {
-        return tipocomprobante;
-    }
-
-
-    public void setTipocomprobante(String tipocomprobante) {
-        this.tipocomprobante = tipocomprobante;
-    }
 
     public int getIdproduct() {
         return idproduct;

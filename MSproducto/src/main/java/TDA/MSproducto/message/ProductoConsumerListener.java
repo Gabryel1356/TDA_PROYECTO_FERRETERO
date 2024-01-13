@@ -18,8 +18,8 @@ import TDA.MSproducto.services.ProductoService;
 
 
 @Component
-public class ventaConsumerListener {
-     private Logger log = LoggerFactory.getLogger(ventaConsumerListener.class);
+public class ProductoConsumerListener {
+     private Logger log = LoggerFactory.getLogger(ProductoConsumerListener.class);
 
     @Autowired
     ProductoService service;
@@ -40,7 +40,7 @@ public class ventaConsumerListener {
         model.setStock(data.getStock());
 
 
-        log.info("Register venta {} ", data.getIdventa());
+        log.info("se Registro el descuento de producto por venta {} ", data.getIdventa());
         service.agregar(model);
 
         log.info("****************************************************************");

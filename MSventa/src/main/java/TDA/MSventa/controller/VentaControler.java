@@ -54,16 +54,16 @@ public class VentaControler {
 
         try {
             logger.info(
-                    "Post: idventa {} - fechaventa {} - igv {} - subtotal {} - costoventa {} - tipocomprobante {} ",
+                    "Post: idventa {} - fechaventa {} - igv {} - subtotal {} - costoventa {} - unidades {} ",
                     request.getIdventa(), request.getFechaventa(), request.getIgv(), request.getSubtotal(),
-                    request.getCostoventa(), request.getTipocomprobante());
+                    request.getCostoventa(), request.getUnidades());
             modeloVenta Mv = new modeloVenta();
             Mv.setIdventa(request.getIdventa());
             Mv.setFechaventa(request.getFechaventa());
             Mv.setIgv(request.getIgv());
             Mv.setSubtotal(request.getSubtotal());
             Mv.setCostoventa(request.getCostoventa());
-            Mv.setTipocomprobante(request.getTipocomprobante());
+            Mv.setUnidades(request.getUnidades());
            
 
             Mv = ventaServ.agregar(Mv);
@@ -95,9 +95,9 @@ public class VentaControler {
 
         try {
             logger.info(
-                    "Post: idventa {} - fechaventa {} - igv {} - subtotal {} - costoventa {} - tipocomprobante {} ",
+                    "Post: idventa {} - fechaventa {} - igv {} - subtotal {} - costoventa {} - unidades {} ",
                     request.getIdventa(), request.getFechaventa(), request.getIgv(), request.getSubtotal(),
-                    request.getCostoventa(), request.getTipocomprobante());
+                    request.getCostoventa(), request.getUnidades());
 
            modeloVenta Mv = new modeloVenta();
             Mv.setIdventa(request.getIdventa());
@@ -105,7 +105,7 @@ public class VentaControler {
             Mv.setIgv(request.getIgv());
             Mv.setSubtotal(request.getSubtotal());
             Mv.setCostoventa(request.getCostoventa());
-            Mv.setTipocomprobante(request.getTipocomprobante());
+            Mv.setUnidades(request.getUnidades());
 
             Mv = ventaServ.agregar(Mv);
             logger.info("Agregar modeloVenta {}", Mv);

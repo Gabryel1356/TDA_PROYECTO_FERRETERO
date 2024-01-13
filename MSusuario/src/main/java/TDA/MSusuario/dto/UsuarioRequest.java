@@ -11,9 +11,7 @@ public class UsuarioRequest implements Serializable {
 
     public UsuarioRequest(String nombreusuario, String clave) {
         this.setNombreusuario(nombreusuario);
-        ;
-        this.setClave(clave);
-        ;
+        this.setClave(clave);   
     }
 
     public String getNombreusuario() {

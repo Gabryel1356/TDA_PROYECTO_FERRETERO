@@ -14,14 +14,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 import TDA.MSusuario.dto.UsuarioRequest;
 import TDA.MSusuario.dto.UsuarioResponse;
+import TDA.MSusuario.jwt.JwtToken;
 import TDA.MSusuario.model.modelUsuario;
 import TDA.MSusuario.service.UsuarioService;
+
 
 @RestController
 @RequestMapping("/api/Usuario")
 public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
+
+    @Autowired
+    private JwtToken jwtTokenCross;
 
     Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
@@ -37,8 +42,8 @@ public class UsuarioController {
         if (!usuarioService.validatedCredentials(request.getNombreusuario(), request.getClave())) {
             return new ResponseEntity<String>("CREDENCIALES NO VÁLIDAS", HttpStatus.UNAUTHORIZED);
         }
-
-        UsuarioResponse response = new UsuarioResponse(request.getNombreusuario());
+        String token = jwtTokenCross.generateToken(request);
+        UsuarioResponse response = new UsuarioResponse(token, request.getNombreusuario(), "id");
 
         return ResponseEntity.ok(response);
     }

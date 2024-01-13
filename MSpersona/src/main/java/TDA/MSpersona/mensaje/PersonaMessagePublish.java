@@ -1,4 +1,4 @@
-package TDA.MSventa.message;
+package TDA.MSpersona.mensaje;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -7,12 +7,14 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import TDA.MSventa.model.modeloVenta;
+import TDA.MSpersona.model.modeloPersona;
+
+
 
 
 
 @Component
-public class productoMessagePublish {
+public class PersonaMessagePublish {
 
     
     @Value("${spring.kafka.template.default-topic}")
@@ -25,9 +27,9 @@ public class productoMessagePublish {
     @Autowired
     ObjectMapper objectMapper;
 
-    public void sendDepositEvent(modeloVenta modelven) throws JsonProcessingException {
+    public void sendDepositEvent(modeloPersona modelpers) throws JsonProcessingException {
 
-        String value = objectMapper.writeValueAsString(modelven);
+        String value = objectMapper.writeValueAsString(modelpers);
         kafkaTemplate.send(topicName, value);
     }
     
