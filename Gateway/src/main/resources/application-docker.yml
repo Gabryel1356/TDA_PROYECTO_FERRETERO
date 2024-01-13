@@ -24,10 +24,10 @@ spring:
           - Path=/MSventa/**
         filters:
           - StripPrefix=1
-      - id: MSusuario
-        uri: http://localhost:84
+      - id: appusuario
+        uri: http://app-usuario:84
         predicates:
-          - Path=/MSusuario/**
+          - Path=/appusuario/**
         filters:
           - StripPrefix=1
           - JwtAuthenticationFilter
