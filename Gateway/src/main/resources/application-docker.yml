@@ -1,0 +1,58 @@
+server:
+  port: 6002
+
+jwt:
+  secret: Key#SuperSecret$PolyglotTest#JavaMicroservices#940527000
+
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Credentials Access-Control-Allow-Origin
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+              allowedOrigins: "*"
+              allowedMethods: "*"
+              allowedHeaders: "*"
+       routes:      
+      - id: MSventa
+        uri: http://localhost:91
+        predicates:
+          - Path=/MSventa/**
+        filters:
+          - StripPrefix=1
+      - id: MSusuario
+        uri: http://localhost:84
+        predicates:
+          - Path=/MSusuario/**
+        filters:
+          - StripPrefix=1
+          - JwtAuthenticationFilter
+      - id: MSproducto
+        uri: http://localhost:90
+        predicates:
+          - Path=/MSproducto/**
+        filters:
+          - StripPrefix=1
+          - JwtAuthenticationFilter
+      - id: MSpersona
+        uri: http://localhost:95
+        predicates:
+          - Path=/MSpersona/**
+        filters:
+          - StripPrefix=1
+          - JwtAuthenticationFilter
+      - id: MSgenEnumerador
+        uri: http://localhost:105
+        predicates:
+          - Path=/MSgenEnumerador/**
+        filters:
+          - StripPrefix=1
+          - JwtAuthenticationFilter
+           
+  
+
+  
