@@ -1,4 +1,4 @@
-package TDA.MSpersona.mensaje;
+package TDA.MSpersona.constantes;
 
 import org.springframework.stereotype.Component;
 

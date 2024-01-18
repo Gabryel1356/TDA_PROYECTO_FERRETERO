@@ -30,12 +30,12 @@ public class UsuarioController {
 
     Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 
-    @GetMapping
+    @GetMapping("/listar")
     public List<modelUsuario> get() {
         return usuarioService.getAcces();
     }
 
-    @PostMapping()
+    @PostMapping("/registrar")
     public ResponseEntity<?> post(@RequestBody UsuarioRequest request) throws Exception {
         logger.info("Post: nombreusuario {} - clave {}", request.getNombreusuario(), request.getClave());
 

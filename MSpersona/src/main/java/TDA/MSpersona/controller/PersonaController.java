@@ -3,8 +3,6 @@ package TDA.MSpersona.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,19 +15,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import TDA.MSpersona.constantes.Mensajeria;
 import TDA.MSpersona.dto.PersonaRequest;
-import TDA.MSpersona.mensaje.Mensajeria;
+
 import TDA.MSpersona.model.modeloPersona;
 import TDA.MSpersona.service.IPersonaServices;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("/api/Persona")
+@Slf4j
 public class PersonaController {
 
     @Autowired
     IPersonaServices PersonaServices;
-
-    Logger logger = LoggerFactory.getLogger(PersonaController.class);
     @Autowired
     Mensajeria messageEvent;
 
@@ -38,12 +37,12 @@ public class PersonaController {
 
         try {
             List<modeloPersona> ListarProducto = PersonaServices.obtener();
-            logger.debug("CONTROLLER: ListarProducto");
+            log.debug("CONTROLLER: ListarProducto");
 
             return ResponseEntity.ok(ListarProducto);
 
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
             return ResponseEntity.ok(messageEvent.MSGEROR() + e);
         }
 
@@ -53,7 +52,7 @@ public class PersonaController {
     public ResponseEntity<?> registrar(@RequestBody PersonaRequest request) {
 
         try {
-            logger.info(
+            log.info(
                     "Post: idpersona {} - tiopodocumento {} - nombre {} - apepaterno {} - apematerno {} - fechanacimiento {} - telefono {} - correo {}- sexo {}- direccion {}- tipopersona {}",
                     request.getIdpersona(), request.getTiopodocumento(), request.getNombre(), request.getApematerno(),
                     request.getApepaterno(), request.getFechanacimiento(), request.getTelefono(), request.getCorreo(),
@@ -72,10 +71,10 @@ public class PersonaController {
             Mp.setTipopersona(request.getTipopersona());
 
             Mp = PersonaServices.agregar(Mp);
-            logger.info("Agregar modeloProducto {}", Mp);
+            log.info("Agregar modeloProducto {}", Mp);
             return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
             return ResponseEntity.ok(messageEvent.MSGEROR() + e);
         }
 
@@ -84,21 +83,22 @@ public class PersonaController {
     @GetMapping(path = "/{id}")
     public ResponseEntity<?> obtenerPersona(@PathVariable("id") int persona) throws Exception {
         try {
-            logger.info("CONTROLLER: Obtener por idpersona: {}", persona);
+            log.info("CONTROLLER: Obtener por idpersona: {}", persona);
             Optional<modeloPersona> moPe = PersonaServices.obtenerporid(persona);
 
             return ResponseEntity.ok(moPe);
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
             return ResponseEntity.ok(messageEvent.MSGEROR() + e);
         }
 
     }
-     @PutMapping(path = "/{id}")
+
+    @PutMapping(path = "/{id}")
     public ResponseEntity<?> modificarPersona(@PathVariable int id, @RequestBody PersonaRequest request) {
 
         try {
-           logger.info(
+            log.info(
                     "Post: idpersona {} - tiopodocumento {} - nombre {} - apepaterno {} - apematerno {} - fechanacimiento {} - telefono {} - correo {}- sexo {}- direccion {}- tipopersona {}",
                     request.getIdpersona(), request.getTiopodocumento(), request.getNombre(), request.getApematerno(),
                     request.getApepaterno(), request.getFechanacimiento(), request.getTelefono(), request.getCorreo(),
@@ -117,12 +117,11 @@ public class PersonaController {
             Mp.setDireccion(request.getDireccion());
             Mp.setTipopersona(request.getTipopersona());
 
-
-            Mp = PersonaServices.modificar( Mp, id);
-            logger.info("Modificacion del modelopersona {}", Mp);
+            Mp = PersonaServices.modificar(Mp, id);
+            log.info("Modificacion del modelopersona {}", Mp);
             return ResponseEntity.ok(messageEvent.MSGMODIEXITO());
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
             return ResponseEntity.ok(messageEvent.MSGEROR() + e);
         }
 
@@ -134,19 +133,15 @@ public class PersonaController {
         try {
 
             PersonaServices.DeletePersona(id);
-            logger.info("CONTROLLER: Se elimino con el idpersona: {}", id);
+            log.info("CONTROLLER: Se elimino con el idpersona: {}", id);
             return ResponseEntity.ok(messageEvent.MSGELIMEXIT());
 
         } catch (Exception e) {
 
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
             return ResponseEntity.ok(messageEvent.MSGEROR() + e);
         }
 
     }
-
-
-
-
 
 }
