@@ -31,7 +31,7 @@
         <Root level="info">
             <AppenderRef ref="Console" />
         </Root>
-        <Logger name="TDA.Mspersona" level="trace">
+        <Logger name="TDA" level="trace">
             <AppenderRef ref="RollingFile" />
         </Logger>
     </Loggers>

@@ -1,0 +1,5 @@
+2024-01-18 18:06:48,090 INFO o.s.b.StartupInfoLogger [main] Starting MSpersonaApplication using Java 17 with PID 27884 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSpersona\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
+2024-01-18 18:06:48,137 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
+2024-01-18 18:06:48,154 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-18 18:07:11,366 INFO o.s.b.StartupInfoLogger [main] Started MSpersonaApplication in 24.606 seconds (process running for 26.97)
+2024-01-18 18:07:19,315 DEBUG T.M.c.PersonaController [http-nio-95-exec-1] CONTROLLER: ListarProducto

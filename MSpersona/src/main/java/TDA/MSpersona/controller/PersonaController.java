@@ -20,11 +20,13 @@ import TDA.MSpersona.dto.PersonaRequest;
 
 import TDA.MSpersona.model.modeloPersona;
 import TDA.MSpersona.service.IPersonaServices;
-import lombok.extern.slf4j.Slf4j;
+import lombok.extern.log4j.Log4j2;
+
+
 
 @RestController
 @RequestMapping("/api/Persona")
-@Slf4j
+@Log4j2
 public class PersonaController {
 
     @Autowired
