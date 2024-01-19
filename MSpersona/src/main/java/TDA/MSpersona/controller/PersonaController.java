@@ -3,6 +3,7 @@ package TDA.MSpersona.controller;
 import java.util.List;
 import java.util.Optional;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import TDA.MSpersona.constantes.Mensajeria;
 import TDA.MSpersona.dto.PersonaRequest;
 
-import TDA.MSpersona.model.modeloPersona;
+import TDA.MSpersona.model.ModeloPersona;
 import TDA.MSpersona.service.IPersonaServices;
 import lombok.extern.log4j.Log4j2;
+
+
 
 
 
@@ -29,26 +32,29 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class PersonaController {
 
+
     @Autowired
     IPersonaServices PersonaServices;
     @Autowired
     Mensajeria messageEvent;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> Listar() {
+    public ResponseEntity  Listar() {
 
         try {
-            List<modeloPersona> ListarProducto = PersonaServices.obtener();
+            List<PersonaRequest> ListarProducto = PersonaServices.obtener();
             log.debug("CONTROLLER: ListarProducto");
 
-            return ResponseEntity.ok(ListarProducto);
+            return new ResponseEntity(ListarProducto,HttpStatus.CREATED);
 
         } catch (Exception e) {
             log.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            return new ResponseEntity(messageEvent,HttpStatus.INTERNAL_SERVER_ERROR);
+
         }
 
     }
+    
 
     @PostMapping("/registrar")
     public ResponseEntity<?> registrar(@RequestBody PersonaRequest request) {
@@ -59,42 +65,36 @@ public class PersonaController {
                     request.getIdpersona(), request.getTiopodocumento(), request.getNombre(), request.getApematerno(),
                     request.getApepaterno(), request.getFechanacimiento(), request.getTelefono(), request.getCorreo(),
                     request.getSexo(), request.getDireccion(), request.getTipopersona());
-            modeloPersona Mp = new modeloPersona();
-            Mp.setIdpersona(request.getIdpersona());
-            Mp.setTiopodocumento(request.getTiopodocumento());
-            Mp.setNombre(request.getNombre());
-            Mp.setApepaterno(request.getApepaterno());
-            Mp.setApematerno(request.getApematerno());
-            Mp.setFechanacimiento(request.getFechanacimiento());
-            Mp.setTelefono(request.getTelefono());
-            Mp.setCorreo(request.getCorreo());
-            Mp.setSexo(request.getSexo());
-            Mp.setDireccion(request.getDireccion());
-            Mp.setTipopersona(request.getTipopersona());
 
-            Mp = PersonaServices.agregar(Mp);
-            log.info("Agregar modeloProducto {}", Mp);
-            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
+                    PersonaServices.agregar(request);
+
+            log.info("Agregar modeloProducto {}", request);
+            return new ResponseEntity(HttpStatus.CREATED);
+          
         } catch (Exception e) {
             log.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            return new ResponseEntity(messageEvent,HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
+
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> obtenerPersona(@PathVariable("id") int persona) throws Exception {
+    public ResponseEntity<?> obtenerPersona(@PathVariable("id") int id){
         try {
-            log.info("CONTROLLER: Obtener por idpersona: {}", persona);
-            Optional<modeloPersona> moPe = PersonaServices.obtenerporid(persona);
-
-            return ResponseEntity.ok(moPe);
+            log.info("CONTROLLER: Obtener por idpersona: {}", id);
+            PersonaRequest request = PersonaServices.obtenerporid(id);
+            return new ResponseEntity(request,HttpStatus.OK);
+          
         } catch (Exception e) {
             log.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            return new ResponseEntity(messageEvent,HttpStatus.INTERNAL_SERVER_ERROR);
+            
         }
 
     }
+
+
 
     @PutMapping(path = "/{id}")
     public ResponseEntity<?> modificarPersona(@PathVariable int id, @RequestBody PersonaRequest request) {
@@ -105,26 +105,14 @@ public class PersonaController {
                     request.getIdpersona(), request.getTiopodocumento(), request.getNombre(), request.getApematerno(),
                     request.getApepaterno(), request.getFechanacimiento(), request.getTelefono(), request.getCorreo(),
                     request.getSexo(), request.getDireccion(), request.getTipopersona());
-            modeloPersona Mp = new modeloPersona();
+         
+             PersonaRequest response =  PersonaServices.modificar(request, id);
+            log.info("Modificacion del modelopersona {}", response);
+            return new ResponseEntity(messageEvent.MSGMODIEXITO(),HttpStatus.OK);
 
-            Mp.setIdpersona(request.getIdpersona());
-            Mp.setTiopodocumento(request.getTiopodocumento());
-            Mp.setNombre(request.getNombre());
-            Mp.setApepaterno(request.getApepaterno());
-            Mp.setApematerno(request.getApematerno());
-            Mp.setFechanacimiento(request.getFechanacimiento());
-            Mp.setTelefono(request.getTelefono());
-            Mp.setCorreo(request.getCorreo());
-            Mp.setSexo(request.getSexo());
-            Mp.setDireccion(request.getDireccion());
-            Mp.setTipopersona(request.getTipopersona());
-
-            Mp = PersonaServices.modificar(Mp, id);
-            log.info("Modificacion del modelopersona {}", Mp);
-            return ResponseEntity.ok(messageEvent.MSGMODIEXITO());
         } catch (Exception e) {
             log.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            return new ResponseEntity(messageEvent,HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }

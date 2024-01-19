@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import TDA.MSpersona.model.modeloPersona;
+import TDA.MSpersona.model.ModeloPersona;
 
 
 
@@ -27,7 +27,7 @@ public class PersonaMessagePublish {
     @Autowired
     ObjectMapper objectMapper;
 
-    public void sendDepositEvent(modeloPersona modelpers) throws JsonProcessingException {
+    public void sendDepositEvent(ModeloPersona modelpers) throws JsonProcessingException {
 
         String value = objectMapper.writeValueAsString(modelpers);
         kafkaTemplate.send(topicName, value);

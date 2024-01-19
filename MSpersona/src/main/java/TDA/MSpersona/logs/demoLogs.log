@@ -1,0 +1,4 @@
+2024-01-18 18:03:43,971 INFO o.s.b.StartupInfoLogger [main] Starting DemoLogsApplication using Java 17 with PID 18680 (C:\Users\pasto\OneDrive\Escritorio\Taller\Proyectos-Progra-Web-master\demoLogs\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Taller\Proyectos-Progra-Web-master)
+2024-01-18 18:03:44,005 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
+2024-01-18 18:03:44,021 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-18 18:03:52,239 INFO o.s.b.StartupInfoLogger [main] Started DemoLogsApplication in 10.789 seconds (process running for 13.202)
