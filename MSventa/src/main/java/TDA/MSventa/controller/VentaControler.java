@@ -1,9 +1,7 @@
 package TDA.MSventa.controller;
-import java.util.List;
-import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,119 +15,90 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import TDA.MSventa.dto.VentaRequest;
-import TDA.MSventa.message.Mensajeria;
-import TDA.MSventa.model.modeloVenta;
+import TDA.MSventa.constantes.Mensajeria;
+import TDA.MSventa.dto.VentaRequestDto;
 import TDA.MSventa.services.IVentaService;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2
 @RestController
 @RequestMapping("/api/venta")
 public class VentaControler {
     @Autowired
     IVentaService ventaServ;
-
-    Logger logger = LoggerFactory.getLogger(VentaControler.class);
-
     @Autowired
     Mensajeria messageEvent;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> Listar() {
-
+    public ResponseEntity<List<VentaRequestDto>> List() {
         try {
-            List<modeloVenta> Listarventa = ventaServ.obtener();
-            logger.debug("CONTROLLER: ListarVenta");
+            log.debug("CONTROLLER: Listar Venta");
+            List<VentaRequestDto> venta = ventaServ.obtener();
 
-            return ResponseEntity.ok(Listarventa);
-
+            return ResponseEntity.ok(venta);
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<?> registrar(@RequestBody VentaRequest request) {
-
+    public ResponseEntity<Void> registrar(@RequestBody VentaRequestDto request) {
         try {
-            logger.info(
+            log.info(
                     "Post: idventa {} - fechaventa {} - igv {} - subtotal {} - costoventa {} - unidades {} ",
                     request.getIdventa(), request.getFechaventa(), request.getIgv(), request.getSubtotal(),
                     request.getCostoventa(), request.getUnidades());
-            modeloVenta Mv = new modeloVenta();
-            Mv.setIdventa(request.getIdventa());
-            Mv.setFechaventa(request.getFechaventa());
-            Mv.setIgv(request.getIgv());
-            Mv.setSubtotal(request.getSubtotal());
-            Mv.setCostoventa(request.getCostoventa());
-            Mv.setUnidades(request.getUnidades());
-           
-
-            Mv = ventaServ.agregar(Mv);
-            logger.info("Agregar modeloVenta {}", Mv);
-            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
+            ventaServ.agregar(request);
+            log.info("Agregar modeloVenta {}", request);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
+       
     }
 
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> obtenerVenta(@PathVariable("id") int idventa) throws Exception {
-        try {
-            logger.info("CONTROLLER: Obtener por idventa: {}", idventa);
-            Optional<modeloVenta> MVenta = ventaServ.obtenerVentaPorid(idventa);
-            
-            return ResponseEntity.ok( MVenta);
-        } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
-        }
+    public ResponseEntity<VentaRequestDto> obtenerVenta(@PathVariable("id") int id) {
 
+        try {
+            log.info("CONTROLLER: Obtener por idventa: {}", id);
+            VentaRequestDto request = ventaServ.obtenerVentaPorid(id);
+            return new ResponseEntity<VentaRequestDto>(request, null, HttpStatus.OK);
+        } catch (Exception e) {
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return new ResponseEntity<VentaRequestDto>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> modificarVenta(@PathVariable int id, @RequestBody VentaRequest request) {
-
+    public ResponseEntity<?> modificarVenta(@PathVariable int id, @RequestBody VentaRequestDto request) {
         try {
-            logger.info(
+            log.info(
                     "Post: idventa {} - fechaventa {} - igv {} - subtotal {} - costoventa {} - unidades {} ",
                     request.getIdventa(), request.getFechaventa(), request.getIgv(), request.getSubtotal(),
                     request.getCostoventa(), request.getUnidades());
-
-           modeloVenta Mv = new modeloVenta();
-            Mv.setIdventa(request.getIdventa());
-            Mv.setFechaventa(request.getFechaventa());
-            Mv.setIgv(request.getIgv());
-            Mv.setSubtotal(request.getSubtotal());
-            Mv.setCostoventa(request.getCostoventa());
-            Mv.setUnidades(request.getUnidades());
-
-            Mv = ventaServ.agregar(Mv);
-            logger.info("Agregar modeloVenta {}", Mv);
-            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
+            ventaServ.ModificarVenta(request, id);
+            log.info("Agregar modeloVenta {}", request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGMODIEXITO());
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(messageEvent.MSGEROR() + e);
         }
-
     }
 
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> DeleteVentaPorid(@PathVariable("id") int id) {
-
         try {
-
             ventaServ.DeleteVenta(id);
-            logger.info("CONTROLLER: Se elimino con el idventa: {}", id);
+            log.info("CONTROLLER: Se elimino con el idventa: {}", id);
             return ResponseEntity.ok(messageEvent.MSGELIMEXIT());
-
         } catch (Exception e) {
-
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(messageEvent.MSGEROR() + e);
         }
 
     }

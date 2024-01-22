@@ -1,12 +1,10 @@
 package TDA.MSproducto.controller;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -19,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import TDA.MSproducto.model.modeloProducto;
+
 import TDA.MSproducto.services.IProductoService;
+import lombok.extern.log4j.Log4j2;
+import TDA.MSproducto.constantes.Mensajeria;
+import TDA.MSproducto.dto.ProductoRequestDto;
 
-import TDA.MSproducto.dto.ProductoRequest;
-import TDA.MSproducto.message.Mensajeria;
-
+@Log4j2
 @RestController
 @RequestMapping("/api/producto")
 public class ProductoController {
@@ -32,112 +31,89 @@ public class ProductoController {
     @Autowired
     IProductoService productoService;
 
-    Logger logger = LoggerFactory.getLogger(ProductoController.class);
-
     @Autowired
     Mensajeria messageEvent;
 
     @GetMapping("/listar")
-    public ResponseEntity<?> Listar() {
+    public ResponseEntity<List<ProductoRequestDto>> Listar() {
 
         try {
-            List<modeloProducto> ListarProducto = productoService.obtener();
-            logger.debug("CONTROLLER: ListarProducto");
-
+           
+            List<ProductoRequestDto> ListarProducto = productoService.obtener();
+            log.debug("CONTROLLER: ListarProducto");
             return ResponseEntity.ok(ListarProducto);
 
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
 
     @PostMapping("/registrar")
-    public ResponseEntity<?> registrar(@RequestBody ProductoRequest request) {
+    public ResponseEntity<Void> registrar(@RequestBody ProductoRequestDto request) {
 
         try {
-            logger.info(
+            log.info(
                     "Post: idProducto {} - nombre {} - descripcion {} - fechaFabricacion {} - costoCompra {} - stock {} - imagenRuta {} - nombreUnidad {}",
                     request.getIdproduct(), request.getNombrepro(), request.getImagenruta(), request.getNombreunidad(),
                     request.getStock(), request.getFechafa(), request.getCostocompra(), request.getDescripcion());
-            modeloProducto Mp = new modeloProducto();
-            Mp.setIdproduct(request.getIdproduct());
-            Mp.setNombrepro(request.getNombrepro());
-            Mp.setDescripcion(request.getDescripcion());
-            Mp.setFechafa(request.getFechafa());
-            Mp.setCostocompra(request.getCostocompra());
-            Mp.setStock(request.getStock());
-            Mp.setImagenruta(request.getImagenruta());
-            Mp.setNombreunidad(request.getNombreunidad());
-
-            Mp = productoService.agregar(Mp);
-            logger.info("Agregar modeloProducto {}", Mp);
-            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGEXITO());
+           
+             productoService.agregar(request);
+            log.info("Agregar modeloProducto {}", request);
+            return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
-
     @GetMapping(path = "/{id}")
-    public ResponseEntity<?> obtenerProducto(@PathVariable("id") int idproduct) throws Exception {
+    public ResponseEntity<ProductoRequestDto> obtenerProducto(@PathVariable("id") int idproduct)  {
         try {
-            logger.info("CONTROLLER: Obtener por idproducto: {}", idproduct);
-            Optional<modeloProducto> MProducto = productoService.obtenerProductoPorid(idproduct);
+            log.info("CONTROLLER: Obtener por idproducto: {}", idproduct);
+            ProductoRequestDto request = productoService.obtenerProductoPorid(idproduct);
             
-            return ResponseEntity.ok( MProducto);
+            return new ResponseEntity<ProductoRequestDto>(request, null, HttpStatus.OK);
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return new ResponseEntity<ProductoRequestDto>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
     }
-
     @PutMapping(path = "/{id}")
-    public ResponseEntity<?> modificarProducto(@PathVariable int id, @RequestBody ProductoRequest request) {
+    public ResponseEntity<?> modificarProducto(@PathVariable int id, @RequestBody ProductoRequestDto request) {
 
         try {
-            logger.info(
+            log.info(
                     "Post: idProducto {} - nombre {} - descripcion {} - fechaFabricacion {} - costoCompra {} - stock {} - imagenRuta {} - nombreUnidad {}",
                     request.getIdproduct(), request.getNombrepro(), request.getImagenruta(), request.getNombreunidad(),
                     request.getStock(), request.getFechafa(), request.getCostocompra(), request.getDescripcion());
 
-            modeloProducto Mp = new modeloProducto();
-
-            Mp.setIdproduct(request.getIdproduct());
-            Mp.setNombrepro(request.getNombrepro());
-            Mp.setDescripcion(request.getDescripcion());
-            Mp.setFechafa(request.getFechafa());
-            Mp.setCostocompra(request.getCostocompra());
-            Mp.setStock(request.getStock());
-            Mp.setImagenruta(request.getImagenruta());
-            Mp.setNombreunidad(request.getNombreunidad());
-
-            Mp = productoService.ModificarProducto(id, Mp);
-            logger.info("Modificacion del modeloProducto {}", Mp);
-            return ResponseEntity.ok(messageEvent.MSGMODIEXITO());
+      
+        productoService.ModificarProducto(id, request);
+            log.info("Modificacion del modeloProducto {}", request);
+            return ResponseEntity.status(HttpStatus.CREATED).body(messageEvent.MSGMODIEXITO());
         } catch (Exception e) {
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(messageEvent.MSGEROR() + e);
         }
 
     }
-
+  
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<String> DeleteProductoPorid(@PathVariable("id") int id) {
 
         try {
 
             productoService.DeleteProducto(id);
-            logger.info("CONTROLLER: Se elimino con el idproducto: {}", id);
+            log.info("CONTROLLER: Se elimino con el idproducto: {}", id);
             return ResponseEntity.ok(messageEvent.MSGELIMEXIT());
 
         } catch (Exception e) {
 
-            logger.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.ok(messageEvent.MSGEROR() + e);
+            log.error("SE ENCONTRO UN ERROR: {}", e);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(messageEvent.MSGEROR() + e);
         }
 
     }

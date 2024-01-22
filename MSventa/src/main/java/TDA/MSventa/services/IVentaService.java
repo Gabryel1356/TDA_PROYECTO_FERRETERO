@@ -1,20 +1,17 @@
 package TDA.MSventa.services;
 
 import java.util.List;
-import java.util.Optional;
 
-import TDA.MSventa.model.modeloVenta;
+
+import TDA.MSventa.dto.VentaRequestDto;
+
 
 public interface IVentaService {
     
-public List<modeloVenta> obtener();
-
-    public modeloVenta agregar(modeloVenta venta);
-
-    public Optional<modeloVenta> obtenerVentaPorid(int idventa);
-
-    public modeloVenta ModificarVenta( int idventa , modeloVenta venta);
-
-     public void DeleteVenta(  int venta );
+    public List<VentaRequestDto> obtener();
+    public void agregar(VentaRequestDto ventadto);
+    public VentaRequestDto obtenerVentaPorid(int idventa);
+    public VentaRequestDto ModificarVenta(  VentaRequestDto ventadto, int idventa );
+    public void DeleteVenta(  int venta );
     
 } 

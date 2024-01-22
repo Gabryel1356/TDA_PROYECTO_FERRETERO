@@ -2,16 +2,26 @@ package TDA.MSventa.model;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter 
+@Setter
+@Builder
+
 
 @Entity
 @Table(name = "venta")
-public class modeloVenta implements Serializable {
+public class ModeloVenta implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
@@ -32,56 +42,5 @@ public class modeloVenta implements Serializable {
 
     @Column(name = "unidades")
     private int unidades;
-
-  
-
-    public int getIdventa() {
-        return idventa;
-    }
-
-    public void setIdventa(int idventa) {
-        this.idventa = idventa;
-    }
-
-    public String getFechaventa() {
-        return fechaventa;
-    }
-
-    public void setFechaventa(String fechaventa) {
-        this.fechaventa = fechaventa;
-    }
-
-    public double getIgv() {
-        return igv;
-    }
-
-    public void setIgv(double igv) {
-        this.igv = igv;
-    }
-
-    public double getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(double subtotal) {
-        this.subtotal = subtotal;
-    }
-
-    public double getCostoventa() {
-        return costoventa;
-    }
-
-    public void setCostoventa(double costoventa) {
-        this.costoventa = costoventa;
-    }
-
-
-    public int getUnidades() {
-        return unidades;
-    }
-
-    public void setUnidades(int unidades) {
-        this.unidades = unidades;
-    }
 
 }

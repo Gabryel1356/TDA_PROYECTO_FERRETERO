@@ -1,11 +1,10 @@
 package TDA.MSventa.repository;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import TDA.MSventa.model.modeloVenta;
+import TDA.MSventa.model.ModeloVenta;
 
 @Repository
-public interface IventaRepository extends CrudRepository<modeloVenta, Integer> {
+public interface IventaRepository extends JpaRepository<ModeloVenta, Integer> {
     
 }

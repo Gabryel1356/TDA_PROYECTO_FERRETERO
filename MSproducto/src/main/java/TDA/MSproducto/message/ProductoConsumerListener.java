@@ -1,8 +1,6 @@
 package TDA.MSproducto.message;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -11,15 +9,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import TDA.MSproducto.dto.ProductoRequest;
+import TDA.MSproducto.dto.ProductoRequestDto;
 import TDA.MSproducto.model.modeloProducto;
 import TDA.MSproducto.services.ProductoService;
+import lombok.extern.log4j.Log4j2;
 
 
-
+@Log4j2
 @Component
 public class ProductoConsumerListener {
-     private Logger log = LoggerFactory.getLogger(ProductoConsumerListener.class);
+   
 
     @Autowired
     ProductoService service;
@@ -32,15 +31,15 @@ public class ProductoConsumerListener {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonMessage = consumerRecord.value();
-        ProductoRequest data = objectMapper.readValue(jsonMessage, ProductoRequest.class);
+        modeloProducto data = objectMapper.readValue(jsonMessage, modeloProducto.class);
+        
+        ProductoRequestDto model = new ProductoRequestDto();
 
-        modeloProducto model = new modeloProducto();
-
-        model.setIdproduct(data.getIdventa());
+        model.setIdproduct(data.getIdproduct());
         model.setStock(data.getStock());
 
 
-        log.info("se Registro el descuento de producto por venta {} ", data.getIdventa());
+        log.info("se Registro el descuento de producto por venta {} ", data.getIdproduct());
         service.agregar(model);
 
         log.info("****************************************************************");

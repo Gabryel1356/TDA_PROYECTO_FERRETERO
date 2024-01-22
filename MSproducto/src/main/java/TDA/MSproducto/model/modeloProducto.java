@@ -2,12 +2,20 @@ package TDA.MSproducto.model;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 
 @Entity
 @Table(name = "product")
@@ -41,71 +49,5 @@ public class modeloProducto implements Serializable {
 
     @Column(name = "nombreunidad")
     private String nombreunidad;
-
-  
-
-    public int getIdproduct() {
-        return idproduct;
-    }
-
-    public void setIdproduct(int idproduct) {
-        this.idproduct = idproduct;
-    }
-
-    public String getNombrepro() {
-        return nombrepro;
-    }
-
-    public void setNombrepro(String nombrepro) {
-        this.nombrepro = nombrepro;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    public String getFechafa() {
-        return fechafa;
-    }
-
-    public void setFechafa(String fechafa) {
-        this.fechafa = fechafa;
-    }
-
-    public double getCostocompra() {
-        return costocompra;
-    }
-
-    public void setCostocompra(double costocompra) {
-        this.costocompra = costocompra;
-    }
-
-    public double getStock() {
-        return stock;
-    }
-
-    public void setStock(double stock) {
-        this.stock = stock;
-    }
-
-    public String getImagenruta() {
-        return imagenruta;
-    }
-
-    public void setImagenruta(String imagenruta) {
-        this.imagenruta = imagenruta;
-    }
-
-    public String getNombreunidad() {
-        return nombreunidad;
-    }
-
-    public void setNombreunidad(String nombreunidad) {
-        this.nombreunidad = nombreunidad;
-    }
 
 }

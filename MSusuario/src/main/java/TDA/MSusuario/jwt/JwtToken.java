@@ -5,7 +5,7 @@ import javax.crypto.spec.SecretKeySpec;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import TDA.MSusuario.dto.UsuarioRequest;
+import TDA.MSusuario.dto.UsuarioRequestDto;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
@@ -22,7 +22,7 @@ public class JwtToken {
     @Value("${jwt.secret}")
     private String secret ;
     
-    public String generateToken(UsuarioRequest usuarioRequest) {
+    public String generateToken(UsuarioRequestDto usuarioRequest) {
 
            Key hmacKey = new SecretKeySpec(secret.getBytes(), SignatureAlgorithm.HS256.getJcaName());
            Instant now = Instant.now();

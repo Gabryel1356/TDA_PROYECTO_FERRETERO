@@ -1,11 +1,6 @@
-2024-01-18 22:56:32,072 INFO o.s.b.StartupInfoLogger [main] Starting MSpersonaApplication using Java 17 with PID 21804 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSpersona\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
-2024-01-18 22:56:32,088 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
-2024-01-18 22:56:32,088 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2024-01-18 22:57:01,650 INFO o.s.b.StartupInfoLogger [main] Started MSpersonaApplication in 31.198 seconds (process running for 34.432)
-2024-01-18 22:57:20,094 INFO T.M.c.PersonaController [http-nio-95-exec-1] Post: idpersona 0 - tiopodocumento 3 - nombre barsa - apepaterno renjifo - apematerno garcia - fechanacimiento 05/10/185 - telefono 993196556 - correo barsairl@gmail.com- sexo 1- direccion jr. orquideas- tipopersona 2
-2024-01-18 22:57:20,871 INFO T.M.c.PersonaController [http-nio-95-exec-1] Modificacion del modelopersona PersonaRequest(idpersona=4, idempleado=4, tiopodocumento=3, nombre=barsa, apepaterno=garcia, apematerno=renjifo, fechanacimiento=05/10/185, telefono=993196556, correo=barsairl@gmail.com, sexo=1, direccion=jr. orquideas, tipopersona=2)
-2024-01-18 22:57:28,579 DEBUG T.M.c.PersonaController [http-nio-95-exec-3] CONTROLLER: ListarProducto
-2024-01-18 22:58:26,162 INFO T.M.c.PersonaController [http-nio-95-exec-4] Post: idpersona 0 - tiopodocumento 1 - nombre barsa - apepaterno renjifo - apematerno garcia - fechanacimiento 05/10/185 - telefono 993196556 - correo barsairl@gmail.com- sexo 1- direccion jr. orquideas- tipopersona 2
-2024-01-18 22:58:26,240 INFO T.M.c.PersonaController [http-nio-95-exec-4] Modificacion del modelopersona PersonaRequest(idpersona=4, idempleado=4, tiopodocumento=1, nombre=barsa, apepaterno=garcia, apematerno=renjifo, fechanacimiento=05/10/185, telefono=993196556, correo=barsairl@gmail.com, sexo=1, direccion=jr. orquideas, tipopersona=2)
-2024-01-18 22:58:32,223 DEBUG T.M.c.PersonaController [http-nio-95-exec-5] CONTROLLER: ListarProducto
-2024-01-18 22:58:46,440 INFO T.M.c.PersonaController [http-nio-95-exec-6] CONTROLLER: Obtener por idpersona: 4
+2024-01-18 23:34:21,695 INFO o.s.b.StartupInfoLogger [main] Starting MSpersonaApplication using Java 17 with PID 2724 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSpersona\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
+2024-01-18 23:34:21,729 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
+2024-01-18 23:34:21,733 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-18 23:34:38,958 INFO o.s.b.StartupInfoLogger [main] Started MSpersonaApplication in 19.096 seconds (process running for 21.049)
+2024-01-18 23:37:26,890 INFO T.M.c.PersonaController [http-nio-95-exec-2] CONTROLLER: Se elimino con el idpersona: 4
+2024-01-18 23:37:34,523 DEBUG T.M.c.PersonaController [http-nio-95-exec-4] CONTROLLER: ListarProducto

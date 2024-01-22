@@ -1,4 +1,4 @@
-package TDA.MSproducto.message;
+package TDA.MSusuario.constantes;
 
 import org.springframework.stereotype.Component;
 
@@ -28,6 +28,11 @@ public class Mensajeria {
      public String MSGMODIEXITO() {
 
         return "SE MODIFICO CON EXITO";
+    }
+
+    public String MSERORGUSU() {
+
+        return "USUARIO NO ENCONTRADO";
     }
 
 }

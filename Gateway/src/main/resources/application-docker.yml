@@ -18,8 +18,8 @@ spring:
               allowedMethods: "*"
               allowedHeaders: "*"
        routes:      
-      - id: MSventa
-        uri: http://localhost:91
+      - id: appventa
+        uri: http://app-venta:91
         predicates:
           - Path=/MSventa/**
         filters:
@@ -31,22 +31,22 @@ spring:
         filters:
           - StripPrefix=1
           - JwtAuthenticationFilter
-      - id: MSproducto
-        uri: http://localhost:90
+      - id: appproducto
+        uri: http://app-producto:90
         predicates:
           - Path=/MSproducto/**
         filters:
           - StripPrefix=1
           - JwtAuthenticationFilter
-      - id: MSpersona
-        uri: http://localhost:95
+      - id: apppersona
+        uri: http://app-persona:95
         predicates:
           - Path=/MSpersona/**
         filters:
           - StripPrefix=1
           - JwtAuthenticationFilter
-      - id: MSgenEnumerador
-        uri: http://localhost:105
+      - id: appgenEnumerador
+        uri: http://app-genenumerador:105
         predicates:
           - Path=/MSgenEnumerador/**
         filters:

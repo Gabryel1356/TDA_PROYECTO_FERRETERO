@@ -30,7 +30,10 @@ public class PersonaMessagePublish {
     public void sendDepositEvent(ModeloPersona modelpers) throws JsonProcessingException {
 
         String value = objectMapper.writeValueAsString(modelpers);
-        kafkaTemplate.send(topicName, value);
+        if (topicName != null) {
+            kafkaTemplate.send(topicName, value);
+        }
+
     }
     
 
