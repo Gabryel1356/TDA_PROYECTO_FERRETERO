@@ -1,9 +1,7 @@
 package TDA.MSpersona.service;
 
 import java.util.List;
-
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
@@ -74,5 +72,6 @@ public class PersonaServices implements IPersonaServices {
             personaRepository.delete(persona);
         }
     }
+
 
 }

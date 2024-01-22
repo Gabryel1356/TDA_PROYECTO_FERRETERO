@@ -1,5 +1,4 @@
 package TDA.MSpersona.dto;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,14 +6,15 @@ import lombok.NoArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-@Getter 
+@Getter
 @Setter
 @Builder
+
+
 public class PersonaRequestDto {
 
     private int idpersona;
@@ -29,8 +29,6 @@ public class PersonaRequestDto {
     private String direccion;
     private int tipopersona;
 
-
  
-   
     
 }

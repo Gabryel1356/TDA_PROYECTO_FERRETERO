@@ -1,14 +1,16 @@
 package TDA.MSgenEnumerador.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import TDA.MSgenEnumerador.dto.genEnumeradorRequestDto;
+import TDA.MSgenEnumerador.mapper.genEnumeradorMapper;
 import TDA.MSgenEnumerador.model.modeloGenEnumerador;
 import TDA.MSgenEnumerador.repository.IgenEnumeradorRepository;
 
@@ -16,26 +18,32 @@ import TDA.MSgenEnumerador.repository.IgenEnumeradorRepository;
 @Service
 public class genEnumeradorService implements IgenEnumeradorService {
 
-    Logger logger = LoggerFactory.getLogger(genEnumeradorService.class);
-
     @Autowired
     IgenEnumeradorRepository genEnumeradorRepository;
 
     @Override
-    public modeloGenEnumerador add(modeloGenEnumerador genenum) {
-        return genEnumeradorRepository.save(genenum);
+    public List<genEnumeradorRequestDto> obtener() {
+        List<modeloGenEnumerador> genEnumerador = genEnumeradorRepository.findAll();
+        List<genEnumeradorRequestDto> rq = genEnumerador.stream().map(
+                mpgenEnumerador -> genEnumeradorMapper.mapper.GenEnumeradorRequestdto(mpgenEnumerador))
+                .collect(Collectors.toList());
+        return rq;
+    }
+
+    @Override
+    @Transactional
+    public void agregar(genEnumeradorRequestDto genquest) {
+        modeloGenEnumerador genEnumerador = genEnumeradorMapper.mapper.GenEnumeradorModel(genquest);
+        if (genEnumerador != null) {
+            genEnumeradorRepository.save(genEnumerador);
+        }
     }
 
     @Override
     @Cacheable(cacheNames = { "genenum" }, key = "#idgenenum")
-    public List<modeloGenEnumerador> findById(Integer idgenenum) {
-        logger.info("SERVICE: Get Find By idgenenum: {}", idgenenum);
-        return (List<modeloGenEnumerador>) genEnumeradorRepository.findById(idgenenum);
-    }
-
-    @Override
-    public Iterable<modeloGenEnumerador> findAll() {
-        return genEnumeradorRepository.findAll();
+    public genEnumeradorRequestDto obtenerporid(int id) {
+        modeloGenEnumerador genEnumerador = genEnumeradorRepository.findById(id).orElse(null);
+        return genEnumeradorMapper.mapper.GenEnumeradorRequestdto(genEnumerador);
     }
 
 }

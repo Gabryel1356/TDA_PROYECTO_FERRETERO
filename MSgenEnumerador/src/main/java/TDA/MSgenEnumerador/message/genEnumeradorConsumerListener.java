@@ -11,7 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import TDA.MSgenEnumerador.dto.genEnumeradorRequest;
+import TDA.MSgenEnumerador.dto.genEnumeradorRequestDto;
 import TDA.MSgenEnumerador.model.modeloGenEnumerador;
 import TDA.MSgenEnumerador.service.genEnumeradorService;
 
@@ -33,9 +33,9 @@ public class genEnumeradorConsumerListener {
 
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonMessage = consumerRecord.value();
-        genEnumeradorRequest data = objectMapper.readValue(jsonMessage, genEnumeradorRequest.class);
-
-        modeloGenEnumerador model = new modeloGenEnumerador();
+        modeloGenEnumerador data = objectMapper.readValue(jsonMessage, modeloGenEnumerador.class);
+        
+        genEnumeradorRequestDto model = new genEnumeradorRequestDto();
 
         model.setIdgenenum(data.getIdgenenum());
         model.setSexo(data.getSexo());
@@ -44,7 +44,7 @@ public class genEnumeradorConsumerListener {
 
 
         log.info("se Registro el descuento de producto por venta {} ", data.getIdgenenum());
-        service.add(model);
+        service.agregar(model);
 
         log.info("****************************************************************");
     }

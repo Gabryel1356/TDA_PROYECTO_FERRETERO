@@ -1,7 +1,6 @@
 package TDA.MSpersona.model;
 
 import java.io.Serializable;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,11 +9,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter 
+@Getter
 @Setter
 @Builder
 
@@ -48,7 +46,5 @@ public class ModeloPersona implements Serializable {
     @Column(name = "tipopersona")
     private int tipopersona;
 
-
-
- 
+    
 }

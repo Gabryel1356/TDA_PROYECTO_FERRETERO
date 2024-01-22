@@ -1,0 +1,5 @@
+2024-01-22 15:32:50,264 INFO o.s.b.StartupInfoLogger [main] Starting MSgenEnumeradorApplication using Java 17 with PID 19212 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSgenEnumerador\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
+2024-01-22 15:32:50,298 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
+2024-01-22 15:32:50,347 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-22 15:33:02,982 INFO o.s.b.StartupInfoLogger [main] Started MSgenEnumeradorApplication in 14.149 seconds (process running for 15.974)
+2024-01-22 15:33:44,791 DEBUG T.M.c.genEnumeradorController [http-nio-105-exec-2] CONTROLLER: Listar

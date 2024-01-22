@@ -26,15 +26,17 @@ public class PersonaController {
     @Autowired
     Mensajeria messageEvent;
 
+
+
     @GetMapping("/listar")
-    public ResponseEntity<?>   Listar() {
+    public ResponseEntity<List<PersonaRequestDto>> List() {
         try {
             List<PersonaRequestDto> ListarProducto = PersonaServices.obtener();
             log.debug("CONTROLLER: ListarProducto");
             return ResponseEntity.ok().body(ListarProducto);
         } catch (Exception e) {
             log.error("SE ENCONTRO UN ERROR: {}", e);
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(messageEvent.MSGEROR() + e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 
         }
     }

@@ -1,11 +1,17 @@
 package TDA.MSgenEnumerador.service;
 
-import TDA.MSgenEnumerador.model.modeloGenEnumerador;
+
+import java.util.List;
+
+import TDA.MSgenEnumerador.dto.genEnumeradorRequestDto;
+
 
 public interface IgenEnumeradorService {
-    public modeloGenEnumerador add(modeloGenEnumerador genenum);
 
-    public Iterable<modeloGenEnumerador> findById(Integer idgenenum);
+    public void agregar(genEnumeradorRequestDto genenum);
 
-    public Iterable<modeloGenEnumerador> findAll();
+    public  genEnumeradorRequestDto obtenerporid(int id);
+
+    public List<genEnumeradorRequestDto> obtener();
+  
 }
