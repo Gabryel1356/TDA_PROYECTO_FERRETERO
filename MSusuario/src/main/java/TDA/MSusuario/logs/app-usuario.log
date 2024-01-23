@@ -1,0 +1,2 @@
+2024-01-22 21:53:18,317 INFO T.M.c.UsuarioController [http-nio-84-exec-1] Post: nombreusuario juan - clave 123
+2024-01-22 21:53:25,497 DEBUG T.M.c.UsuarioController [http-nio-84-exec-2] CONTROLLER: usuario

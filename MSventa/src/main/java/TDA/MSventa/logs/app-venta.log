@@ -1,13 +1,4 @@
-2024-01-20 19:51:39,975 INFO o.s.b.StartupInfoLogger [main] Starting MSventaApplication using Java 17 with PID 6648 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSventa\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
-2024-01-20 19:51:39,992 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
-2024-01-20 19:51:39,994 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2024-01-20 19:52:07,690 INFO o.s.b.StartupInfoLogger [main] Started MSventaApplication in 28.914 seconds (process running for 31.014)
-2024-01-20 19:52:18,462 INFO T.M.c.VentaControler [http-nio-91-exec-2] Post: idventa 0 - fechaventa 02/10/2023 - igv 1.8 - subtotal 50.8 - costoventa 50.0 - unidades 10 
-2024-01-20 19:52:18,677 INFO T.M.c.VentaControler [http-nio-91-exec-2] Agregar modeloVenta VentaRequestDto(idventa=0, unidades=10, fechaventa=02/10/2023, igv=1.8, subtotal=50.8, costoventa=50.0)
-2024-01-20 19:52:21,844 DEBUG T.M.c.VentaControler [http-nio-91-exec-3] CONTROLLER: Listar Venta
-2024-01-20 19:52:32,737 DEBUG T.M.c.VentaControler [http-nio-91-exec-4] CONTROLLER: Listar Venta
-2024-01-20 19:52:36,997 INFO T.M.c.VentaControler [http-nio-91-exec-5] CONTROLLER: Se elimino con el idventa: 0
-2024-01-20 19:52:42,932 DEBUG T.M.c.VentaControler [http-nio-91-exec-6] CONTROLLER: Listar Venta
-2024-01-20 19:52:54,138 INFO T.M.c.VentaControler [http-nio-91-exec-7] Post: idventa 0 - fechaventa 02/10/2023 - igv 1.8 - subtotal 50.8 - costoventa 50.0 - unidades 10 
-2024-01-20 19:52:54,204 INFO T.M.c.VentaControler [http-nio-91-exec-7] Agregar modeloVenta VentaRequestDto(idventa=0, unidades=10, fechaventa=02/10/2023, igv=1.8, subtotal=50.8, costoventa=50.0)
-2024-01-20 19:53:08,482 DEBUG T.M.c.VentaControler [http-nio-91-exec-8] CONTROLLER: Listar Venta
+2024-01-22 20:51:54,508 INFO o.s.b.StartupInfoLogger [main] Starting MSventaApplication using Java 17 with PID 21996 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSventa\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
+2024-01-22 20:51:54,527 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
+2024-01-22 20:51:54,529 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-22 20:52:16,546 INFO o.s.b.StartupInfoLogger [main] Started MSventaApplication in 23.782 seconds (process running for 27.297)

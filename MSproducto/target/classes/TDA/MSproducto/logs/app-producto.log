@@ -1,4 +1,5 @@
-2024-01-22 13:08:10,818 INFO o.s.b.StartupInfoLogger [main] Starting MSproductoApplication using Java 17 with PID 16892 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSproducto\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
-2024-01-22 13:08:10,896 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0-RC2, Spring v6.1.0-RC2
-2024-01-22 13:08:10,900 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
-2024-01-22 13:08:34,173 INFO o.s.b.StartupInfoLogger [main] Started MSproductoApplication in 25.386 seconds (process running for 28.434)
+2024-01-22 17:27:17,811 INFO o.s.b.StartupInfoLogger [main] Starting MSproductoApplication using Java 17 with PID 20124 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSproducto\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
+2024-01-22 17:27:17,849 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0-RC2, Spring v6.1.0-RC2
+2024-01-22 17:27:17,854 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-22 17:27:40,896 INFO o.s.b.StartupInfoLogger [main] Started MSproductoApplication in 24.104 seconds (process running for 26.674)
+2024-01-22 17:28:20,992 DEBUG T.M.c.ProductoController [http-nio-90-exec-3] CONTROLLER: ListarProducto

@@ -1,0 +1,10 @@
+2024-01-22 17:31:22,769 INFO o.s.b.StartupInfoLogger [main] Starting MSpersonaApplication using Java 17 with PID 20888 (C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO\MSpersona\target\classes started by pasto in C:\Users\pasto\OneDrive\Escritorio\Proyecto ferretero\TDA_PROYECTO_FERRETERO)
+2024-01-22 17:31:22,820 DEBUG o.s.b.StartupInfoLogger [main] Running with Spring Boot v3.2.0, Spring v6.1.1
+2024-01-22 17:31:22,824 INFO o.s.b.SpringApplication [main] No active profile set, falling back to 1 default profile: "default"
+2024-01-22 17:31:40,208 INFO o.s.b.StartupInfoLogger [main] Started MSpersonaApplication in 18.702 seconds (process running for 20.899)
+2024-01-22 17:33:10,511 DEBUG T.M.c.PersonaController [http-nio-95-exec-1] CONTROLLER: ListarProducto
+2024-01-22 17:34:45,447 DEBUG T.M.c.PersonaController [http-nio-95-exec-5] CONTROLLER: ListarProducto
+2024-01-22 17:36:16,503 DEBUG T.M.c.PersonaController [http-nio-95-exec-7] CONTROLLER: ListarProducto
+2024-01-22 17:36:26,995 DEBUG T.M.c.PersonaController [http-nio-95-exec-8] CONTROLLER: ListarProducto
+2024-01-22 17:36:37,426 DEBUG T.M.c.PersonaController [http-nio-95-exec-9] CONTROLLER: ListarProducto
+2024-01-22 17:37:48,106 DEBUG T.M.c.PersonaController [http-nio-95-exec-2] CONTROLLER: ListarProducto
